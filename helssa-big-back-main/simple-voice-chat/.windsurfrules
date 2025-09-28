@@ -1,0 +1,317 @@
+# Windsurf IDE Development Rules
+
+## Language and Locale
+language: "fa-IR"
+direction: "rtl"
+encoding: "UTF-8"
+
+## Project Configuration
+project_type: "voice-chat-app"
+stack: ["React", "Flask", "OpenAI", "Docker"]
+language_support: ["Persian", "English"]
+
+## Code Generation Rules
+
+### General Principles
+- Generate clean, maintainable, and well-documented code
+- Prioritize Persian language support and RTL layout
+- Follow modern React and Flask best practices
+- Implement comprehensive error handling
+- Focus on security and performance optimization
+
+### React Development
+formatting:
+  indentation: 2
+  quote_style: "single"
+  semicolons: true
+  trailing_commas: true
+
+patterns:
+  - Use functional components with hooks
+  - Implement proper PropTypes or TypeScript
+  - Support RTL layout for Persian content
+  - Add accessibility attributes (ARIA)
+  - Use modern state management patterns
+  - Implement proper loading and error states
+
+naming_conventions:
+  components: "PascalCase"
+  functions: "camelCase"
+  constants: "UPPER_SNAKE_CASE"
+  css_classes: "kebab-case"
+
+### Flask Development
+formatting:
+  indentation: 4
+  line_length: 88
+  quote_style: "double"
+
+patterns:
+  - Follow PEP 8 style guidelines
+  - Use type hints for function parameters
+  - Implement comprehensive exception handling
+  - Use blueprints for route organization
+  - Add input validation with schemas
+  - Include proper logging and monitoring
+
+naming_conventions:
+  functions: "snake_case"
+  classes: "PascalCase"
+  constants: "UPPER_SNAKE_CASE"
+  modules: "snake_case"
+
+### API Design Standards
+rest_conventions:
+  - Use proper HTTP methods (GET, POST, PUT, DELETE)
+  - Implement consistent status codes
+  - Include request/response validation
+  - Add rate limiting for security
+  - Document endpoints with examples
+  - Version APIs appropriately
+
+response_format:
+  success:
+    status: "success"
+    data: "response_data"
+  error:
+    status: "error"
+    error: "error_message"
+    details: "optional_details"
+
+### Security Guidelines
+authentication:
+  - Validate all user inputs
+  - Sanitize data before processing
+  - Use environment variables for secrets
+  - Implement proper CORS configuration
+  - Add rate limiting and throttling
+
+data_protection:
+  - Never expose API keys in client code
+  - Validate file uploads thoroughly
+  - Implement proper session management
+  - Use HTTPS in production
+  - Add security headers
+
+### Persian Language Support
+text_handling:
+  direction: "rtl"
+  font_family: ["Vazir", "Tahoma", "Arial"]
+  encoding: "UTF-8"
+  bidi_support: true
+
+validation:
+  - Support Persian, Arabic, and English characters
+  - Handle mixed language content properly
+  - Validate Unicode text input
+  - Implement proper text normalization
+
+ui_patterns:
+  - Right-align text by default
+  - Support keyboard shortcuts for Persian
+  - Use appropriate date/time formats
+  - Handle number formatting (Persian digits)
+
+### File Organization
+structure:
+  frontend:
+    - "/src/components" # Reusable UI components
+    - "/src/pages"      # Page-level components
+    - "/src/hooks"      # Custom React hooks
+    - "/src/services"   # API integration
+    - "/src/utils"      # Utility functions
+    - "/src/styles"     # CSS and styling
+    - "/src/types"      # TypeScript definitions
+
+  backend:
+    - "/app/models"     # Data models
+    - "/app/routes"     # API endpoints
+    - "/app/services"   # Business logic
+    - "/app/utils"      # Helper functions
+    - "/app/schemas"    # Validation schemas
+    - "/app/tests"      # Test files
+
+### Error Handling Patterns
+frontend_errors:
+  - Use error boundaries for component errors
+  - Implement global error state management
+  - Provide user-friendly error messages
+  - Add retry mechanisms for network failures
+  - Log errors with proper context
+
+backend_errors:
+  - Use custom exception classes
+  - Implement proper HTTP status codes
+  - Add structured logging
+  - Include error tracking and monitoring
+  - Provide detailed error responses for debugging
+
+### Testing Requirements
+frontend_testing:
+  framework: "Jest + React Testing Library"
+  patterns:
+    - Test user interactions
+    - Mock API calls
+    - Test accessibility features
+    - Verify Persian text rendering
+    - Test responsive design
+
+backend_testing:
+  framework: "pytest"
+  patterns:
+    - Test API endpoints
+    - Mock external services
+    - Validate request/response schemas
+    - Test error scenarios
+    - Check security measures
+
+coverage_targets:
+  minimum: 80
+  preferred: 90
+
+### Performance Optimization
+frontend_performance:
+  - Implement lazy loading for routes
+  - Use React.memo for expensive components
+  - Optimize bundle sizes with code splitting
+  - Cache API responses appropriately
+  - Minimize re-renders with proper dependencies
+
+backend_performance:
+  - Optimize database queries
+  - Implement caching strategies
+  - Use async operations for I/O
+  - Add request compression
+  - Monitor API response times
+
+### Docker Configuration
+containerization:
+  multi_stage_builds: true
+  security_scanning: true
+  health_checks: true
+  resource_limits: true
+
+environments:
+  development:
+    hot_reload: true
+    debug_mode: true
+    verbose_logging: true
+  
+  production:
+    optimized_builds: true
+    security_headers: true
+    monitoring: true
+
+### Code Review Guidelines
+review_criteria:
+  - Code follows established patterns
+  - Proper error handling implemented
+  - Security considerations addressed
+  - Persian language support included
+  - Tests written and passing
+  - Documentation updated
+
+automatic_checks:
+  - ESLint for JavaScript/React
+  - Ruff for Python code
+  - GitLeaks for secrets
+  - Hadolint for Dockerfiles
+  - Unit test coverage
+
+### Git Workflow
+commit_conventions:
+  type: ["feat", "fix", "docs", "style", "refactor", "test", "chore"]
+  scope: ["frontend", "backend", "docker", "docs"]
+  format: "type(scope): description in Persian or English"
+
+branch_naming:
+  pattern: "type/short-description"
+  examples:
+    - "feature/voice-recording"
+    - "fix/audio-upload-error"
+    - "docs/api-documentation"
+
+### Documentation Standards
+inline_documentation:
+  - JSDoc for JavaScript functions
+  - Docstrings for Python functions
+  - Type annotations where applicable
+  - Comments for complex business logic
+
+project_documentation:
+  - README files for each major component
+  - API documentation with examples
+  - Setup and deployment guides
+  - Troubleshooting guides
+
+### Accessibility Requirements
+wcag_compliance:
+  level: "AA"
+  requirements:
+    - Keyboard navigation support
+    - Screen reader compatibility
+    - Color contrast compliance
+    - Alternative text for media
+    - Semantic HTML structure
+
+rtl_support:
+  - Proper text direction handling
+  - Layout mirroring for UI elements
+  - Icon orientation adjustments
+  - Form field alignments
+
+### Audio Processing Guidelines
+recording_standards:
+  formats: ["webm", "wav", "mp3"]
+  quality: "high"
+  compression: "balanced"
+  max_duration: "300_seconds"
+
+whisper_integration:
+  model: "whisper-1"
+  language_detection: true
+  error_handling: "comprehensive"
+  timeout_handling: true
+
+### Environment Configuration
+required_variables:
+  - OPENAI_API_KEY
+  - FLASK_ENV
+  - DEBUG
+  - LOG_LEVEL
+
+optional_variables:
+  - CHAT_API_URL
+  - MAX_FILE_SIZE
+  - RATE_LIMIT_PER_MINUTE
+  - REDIS_URL
+
+### Monitoring and Logging
+logging_standards:
+  level: "INFO"
+  format: "structured_json"
+  include: ["timestamp", "level", "message", "context"]
+  
+metrics_tracking:
+  - API response times
+  - Error rates
+  - User interactions
+  - Audio processing duration
+  - Memory usage
+
+### Deployment Guidelines
+production_checklist:
+  - Environment variables configured
+  - Security headers enabled
+  - HTTPS enforced
+  - Rate limiting active
+  - Monitoring configured
+  - Backup procedures tested
+  - Health checks implemented
+
+scaling_considerations:
+  - Horizontal scaling support
+  - Database connection pooling
+  - CDN integration for static assets
+  - Load balancer configuration
+  - Auto-scaling policies

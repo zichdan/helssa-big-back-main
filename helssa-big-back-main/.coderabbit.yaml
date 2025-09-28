@@ -1,0 +1,372 @@
+# CodeRabbit Configuration File
+# Voice Chat Application - AI Code Review Settings
+
+# Language and Locale Settings
+language: "fa-IR"
+timezone: "Asia/Tehran"
+
+# Review Configuration
+reviews:
+  # Review profile settings
+  profile: "assertive"
+  
+  # Enable high-level summary for pull requests
+  high_level_summary: true
+  
+  # Auto-review settings
+  auto_review:
+    enabled: true
+    drafts: false
+    
+  # Keywords to ignore in PR titles
+  ignore_title_keywords:
+    - "wip"
+    - "draft" 
+    - "work in progress"
+    - "در حال کار"
+    - "نامکمل"
+    
+  # Review triggers
+  triggers:
+    - "pull_request"
+    - "push"
+    
+  # Files to always review
+  include_patterns:
+    - "**/*.js"
+    - "**/*.jsx" 
+    - "**/*.ts"
+    - "**/*.tsx"
+    - "**/*.py"
+    - "**/*.md"
+    - "**/Dockerfile"
+    - "**/*.yml"
+    - "**/*.yaml"
+    - "**/*.json"
+    
+  # Files to exclude from review
+  exclude_patterns:
+    - "node_modules/**"
+    - "build/**"
+    - "dist/**"
+    - "coverage/**"
+    - "*.log"
+    - ".git/**"
+    - "__pycache__/**"
+    - "*.pyc"
+
+# Chat and Communication
+chat:
+  auto_reply: true
+  language: "persian"
+  tone: "professional"
+  
+  # Custom prompts in Persian
+  prompts:
+    welcome: "سلام! من CodeRabbit هستم و آماده بررسی کد شما می‌باشم."
+    summary: "خلاصه تغییرات:"
+    suggestions: "پیشنهادات بهبود:"
+    security: "نکات امنیتی:"
+    performance: "بهینه‌سازی عملکرد:"
+
+# Knowledge Base Integration
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "**/.cursorrules"
+      - "**/CODING_STANDARDS.md"
+      - "**/CLAUDE.md"
+      - "**/.windsurfrules" 
+      - "**/.clinerules"
+      - "**/README.md"
+
+# Code Analysis Tools
+tools:
+  # JavaScript/TypeScript Linting
+  eslint:
+    enabled: true
+    config_file: ".eslintrc.js"
+    severity: "error"
+    
+  # Python Code Quality
+  ruff:
+    enabled: true
+    config_file: "pyproject.toml"
+    severity: "warning"
+    
+  # Security Scanning
+  gitleaks:
+    enabled: true
+    config_file: ".gitleaks.toml"
+    severity: "critical"
+    
+  # Docker Best Practices
+  hadolint:
+    enabled: true
+    severity: "warning"
+    
+  # Additional tools for Voice Chat App
+  prettier:
+    enabled: true
+    config_file: ".prettierrc"
+    
+  # Type checking
+  typescript:
+    enabled: true
+    strict: true
+    
+  # Python type checking
+  mypy:
+    enabled: true
+    config_file: "mypy.ini"
+
+# Project-Specific Rules
+project_rules:
+  # Voice Chat Application specific checks
+  voice_chat:
+    # Audio file handling
+    audio_validation:
+      - "Check file size limits (25MB max)"
+      - "Validate audio formats (webm, wav, mp3, m4a)"
+      - "Ensure proper error handling for audio processing"
+      
+    # Persian language support
+    persian_support:
+      - "Verify RTL layout implementation"
+      - "Check Persian text rendering"
+      - "Validate Unicode handling"
+      - "Ensure proper font support"
+      
+    # API Security
+    api_security:
+      - "Validate all input parameters"
+      - "Check rate limiting implementation"
+      - "Verify API key protection"
+      - "Ensure CORS configuration"
+      
+    # React Best Practices
+    react_patterns:
+      - "Use functional components with hooks"
+      - "Implement proper error boundaries"
+      - "Check accessibility attributes"
+      - "Verify performance optimizations"
+      
+    # Flask Best Practices
+    flask_patterns:
+      - "Use blueprints for route organization"
+      - "Implement proper exception handling"
+      - "Check input validation schemas"
+      - "Verify logging implementation"
+
+# Custom Review Categories
+review_categories:
+  # Security Review
+  security:
+    priority: "high"
+    patterns:
+      - "API key exposure"
+      - "Input validation"
+      - "XSS prevention" 
+      - "SQL injection protection"
+      - "File upload security"
+      
+  # Performance Review  
+  performance:
+    priority: "medium"
+    patterns:
+      - "Bundle size optimization"
+      - "API response time"
+      - "Memory usage"
+      - "Database queries"
+      - "Caching strategies"
+      
+  # Accessibility Review
+  accessibility:
+    priority: "medium"
+    patterns:
+      - "ARIA labels"
+      - "Semantic HTML"
+      - "Keyboard navigation"
+      - "Screen reader support"
+      - "Color contrast"
+      
+  # Persian Language Support
+  localization:
+    priority: "high"
+    patterns:
+      - "RTL layout"
+      - "Persian font rendering"
+      - "Text direction"
+      - "Number formatting"
+      - "Date/time localization"
+
+# Severity Levels
+severity_mapping:
+  critical:
+    - "Security vulnerabilities"
+    - "API key exposure"
+    - "Data leaks"
+    
+  high:
+    - "Performance issues"
+    - "Breaking changes"
+    - "Persian language bugs"
+    - "Accessibility violations"
+    
+  medium:
+    - "Code quality issues"
+    - "Best practice violations"
+    - "Documentation gaps"
+    
+  low:
+    - "Code style issues"
+    - "Minor optimizations"
+    - "Typos"
+
+# Review Focus Areas
+focus_areas:
+  # Frontend (React) Focus
+  frontend:
+    - "Component structure and reusability"
+    - "State management patterns"
+    - "Performance optimizations"
+    - "Accessibility compliance"
+    - "Persian text handling"
+    - "Audio recording implementation"
+    
+  # Backend (Flask) Focus  
+  backend:
+    - "API design and documentation"
+    - "Error handling and logging"
+    - "Input validation and security"
+    - "Database operations"
+    - "OpenAI API integration"
+    - "File upload handling"
+    
+  # DevOps Focus
+  devops:
+    - "Docker configuration"
+    - "Environment variables"
+    - "Security configurations"
+    - "Performance monitoring"
+    - "Deployment scripts"
+
+# Custom Messages (Persian)
+custom_messages:
+  security_issue: "⚠️ مسئله امنیتی شناسایی شد"
+  performance_issue: "🚀 فرصت بهینه‌سازی عملکرد"
+  accessibility_issue: "♿ نکته دسترسی‌پذیری"
+  persian_issue: "🇮🇷 مسئله پشتیبانی زبان فارسی"
+  best_practice: "✅ پیروی از بهترین روش‌ها"
+  code_quality: "🔧 بهبود کیفیت کد"
+
+# Notification Settings
+notifications:
+  # Slack integration (if available)
+  slack:
+    enabled: false
+    webhook_url: ""
+    channel: "#code-review"
+    
+  # Email notifications
+  email:
+    enabled: true
+    recipients:
+      - "developer@voicechat.app"
+    events:
+      - "critical_issues"
+      - "security_vulnerabilities"
+
+# Advanced Settings
+advanced:
+  # AI Model Configuration
+  ai_model:
+    temperature: 0.3
+    max_tokens: 2000
+    model: "gpt-4"
+    
+  # Review Depth
+  review_depth: "comprehensive"
+  
+  # Code Context
+  context_lines: 10
+  
+  # Parallel Processing
+  parallel_reviews: true
+  max_concurrent: 3
+  
+  # Learning Mode
+  learning_enabled: true
+  feedback_integration: true
+
+# Integration Settings
+integrations:
+  # GitHub Integration
+  github:
+    enabled: true
+    auto_merge_minor: false
+    required_approvals: 1
+    
+  # GitLab Integration  
+  gitlab:
+    enabled: false
+    
+  # Bitbucket Integration
+  bitbucket:
+    enabled: false
+
+# Reporting
+reporting:
+  # Weekly reports
+  weekly_summary: true
+  
+  # Metrics tracking
+  metrics:
+    - "review_count"
+    - "issue_resolution_time"
+    - "code_quality_score"
+    - "security_score"
+    
+  # Export formats
+  export_formats:
+    - "json"
+    - "csv"
+    - "pdf"
+
+# Quality Gates
+quality_gates:
+  # Code coverage threshold
+  coverage_threshold: 80
+  
+  # Security score threshold
+  security_threshold: 95
+  
+  # Performance score threshold
+  performance_threshold: 85
+  
+  # Accessibility score threshold
+  accessibility_threshold: 90
+
+# Custom Rules for Voice Chat App
+voice_chat_rules:
+  audio_processing:
+    max_file_size: "25MB"
+    supported_formats: ["webm", "wav", "mp3", "m4a", "ogg"]
+    timeout_seconds: 30
+    
+  openai_integration:
+    api_timeout: 30
+    retry_attempts: 3
+    rate_limit_handling: true
+    
+  persian_validation:
+    unicode_support: true
+    rtl_layout: true
+    bidi_text: true
+    
+  security_requirements:
+    input_sanitization: true
+    file_type_validation: true
+    rate_limiting: true
+    cors_configuration: true

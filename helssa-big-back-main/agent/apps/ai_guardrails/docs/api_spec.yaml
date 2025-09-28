@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Ai Guardrails API
+  version: 1.0.0
+  description: API documentation for ai_guardrails
+
+servers:
+  - url: /api/ai_guardrails
+    description: API endpoint
+
+paths:
+  /api/ai_guardrails/evaluate/:
+    post:
+      summary: Evaluate AI content against guardrails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                direction:
+                  type: string
+                  enum: [input, output, both]
+                context:
+                  type: object
+      responses:
+        '200':
+          description: Evaluation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowed: { type: boolean }
+                  action: { type: string, enum: [allow, warn, block] }
+                  risk_score: { type: integer }
+                  reasons: { type: array, items: { type: string } }
+                  matches: { type: array, items: { type: object } }
+                  applied_policy: { type: string }
+
+  /api/ai_guardrails/policies/:
+    get:
+      summary: List guardrail policies
+      responses:
+        '200':
+          description: List of policies
+    post:
+      summary: Create guardrail policy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuardrailPolicy'
+      responses:
+        '201':
+          description: Created
+
+  /api/ai_guardrails/rules/:
+    get:
+      summary: List red-flag rules
+      responses:
+        '200':
+          description: List of rules
+    post:
+      summary: Create red-flag rule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedFlagRule'
+      responses:
+        '201':
+          description: Created
+
+components:
+  schemas:
+    GuardrailPolicy:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        is_active: { type: boolean }
+        enforcement_mode: { type: string, enum: [block, warn, log] }
+        applies_to: { type: string, enum: [input, output, both] }
+        priority: { type: integer }
+        conditions: { type: object }
+    RedFlagRule:
+      type: object
+      properties:
+        name: { type: string }
+        pattern_type: { type: string, enum: [keyword, regex] }
+        pattern: { type: string }
+        category: { type: string, enum: [emergency, medical_advice, pii, safety, other] }
+        severity: { type: integer }
+        is_active: { type: boolean }
+        metadata: { type: object }
+  
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

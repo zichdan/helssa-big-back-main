@@ -1,0 +1,124 @@
+{
+  "app_name": "ai_helsabrain",
+  "last_updated": "2025-08-27T20:21:04.252394",
+  "overall_progress": 0,
+  "tasks": [
+    {
+      "id": "planning",
+      "name": "برنامه‌ریزی و طراحی",
+      "description": "تکمیل PLAN.md و طراحی API",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [],
+      "notes": ""
+    },
+    {
+      "id": "models",
+      "name": "پیاده‌سازی مدل‌ها",
+      "description": "ایجاد مدل‌های دیتابیس",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "planning"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "four_cores",
+      "name": "پیاده‌سازی چهار هسته",
+      "description": "پیاده‌سازی معماری چهار هسته‌ای",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "planning"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "views",
+      "name": "پیاده‌سازی Views",
+      "description": "ایجاد API endpoints",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "models",
+        "four_cores"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "serializers",
+      "name": "پیاده‌سازی Serializers",
+      "description": "ایجاد serializers",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "models"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "integrations",
+      "name": "یکپارچه‌سازی",
+      "description": "ادغام با unified services",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "views"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "tests",
+      "name": "نوشتن تست‌ها",
+      "description": "ایجاد unit و integration tests",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "views",
+        "serializers"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "documentation",
+      "name": "مستندسازی",
+      "description": "تکمیل README و API docs",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "tests"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "deployment",
+      "name": "آماده‌سازی deployment",
+      "description": "ایجاد فایل‌های deployment",
+      "status": "not_started",
+      "progress": 0,
+      "started_at": null,
+      "completed_at": null,
+      "dependencies": [
+        "documentation"
+      ],
+      "notes": ""
+    }
+  ]
+}

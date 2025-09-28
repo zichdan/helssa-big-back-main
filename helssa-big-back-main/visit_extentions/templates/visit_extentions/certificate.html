@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>گواهی استعلاجی</title>
+    <style>
+        body { font-family: DejaVu Sans, Vazirmatn, sans-serif; }
+        .container { max-width: 680px; margin: 0 auto; padding: 24px; }
+        .header { text-align: center; margin-bottom: 16px; }
+        .field { margin: 12px 0; }
+        .label { color: #555; }
+    </style>
+    <!-- این قالب برای تولید PDF با WeasyPrint استفاده می‌شود -->
+    <!-- شامل QR نیست؛ لینک اعتبارسنجی در متن درج می‌شود -->
+    <meta name="robots" content="noindex,nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>گواهی استعلاجی</h2>
+    </div>
+    <div class="field"><span class="label">نام بیمار:</span> {{ patient_full_name }}</div>
+    <div class="field"><span class="label">پزشک:</span> {{ doctor_full_name }}</div>
+    <div class="field"><span class="label">مدت استعلاج:</span> {{ days_off }} روز</div>
+    <div class="field"><span class="label">دلیل:</span> {{ reason }}</div>
+    <div class="field"><span class="label">اعتبارسنجی:</span> برای بررسی اعتبار به آدرس زیر مراجعه کنید:
+        <div>{{ verify_url }}</div>
+        <div>
+            <img alt="QR" src="data:image/png;base64,{{ verify_qr_b64 }}" style="width:128px;height:128px" />
+        </div>
+    </div>
+    <hr>
+    <small>این سند به صورت خودکار تولید شده است.</small>
+    <small>در صورت ابطال توسط پزشک، اعتبار سند از طریق لینک فوق نامعتبر خواهد شد.</small>
+    <small>© Helssa</small>
+    
+</div>
+</body>
+</html>
+

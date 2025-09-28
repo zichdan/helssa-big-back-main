@@ -1,0 +1,931 @@
+# Cline AI Assistant Development Rules
+
+## Project Context
+language: "fa-IR"
+project: "Voice Chat Application"
+stack: ["React", "Flask", "OpenAI Whisper", "Docker"]
+primary_language: "Persian/Farsi"
+secondary_language: "English"
+
+## Development Philosophy
+approach: "security-first, user-centric, performance-optimized"
+code_quality: "clean, maintainable, well-documented"
+testing: "comprehensive, automated, coverage-driven"
+accessibility: "WCAG 2.1 AA compliant"
+
+## Code Generation Guidelines
+
+### React Frontend Standards
+```javascript
+// Component Template
+import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
+
+/**
+ * Component description in Persian and English
+ * @param {Object} props - Component properties
+ */
+const ComponentName = ({ prop1, prop2, ...restProps }) => {
+  const [state, setState] = useState(initialValue);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleAction = useCallback(async (params) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // Implementation with proper error handling
+      const result = await performAction(params);
+      setState(result);
+      
+    } catch (err) {
+      console.error('Action failed:', err);
+      setError(err.message || 'خطای غیرمنتظره رخ داده است');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return (
+    <div 
+      className="component-name" 
+      dir="rtl"
+      role="region"
+      aria-label="توضیحات کامپوننت"
+      {...restProps}
+    >
+      {error && (
+        <div className="error-message" role="alert">
+          {error}
+        </div>
+      )}
+      
+      {loading && (
+        <div className="loading-indicator" aria-live="polite">
+          در حال بارگذاری...
+        </div>
+      )}
+      
+      {/* Component content */}
+    </div>
+  );
+};
+
+ComponentName.propTypes = {
+  prop1: PropTypes.string.isRequired,
+  prop2: PropTypes.number,
+};
+
+ComponentName.defaultProps = {
+  prop2: 0,
+};
+
+export default ComponentName;
+```
+
+### Flask Backend Standards
+```python
+from flask import Blueprint, request, jsonify, current_app
+from marshmallow import Schema, fields, ValidationError
+from werkzeug.exceptions import BadRequest
+import logging
+from typing import Dict, Any, Optional
+
+logger = logging.getLogger(__name__)
+
+class RequestSchema(Schema):
+    """Schema for request validation"""
+    field1 = fields.Str(required=True, validate=lambda x: len(x.strip()) > 0)
+    field2 = fields.Int(missing=0, validate=lambda x: x >= 0)
+    session_id = fields.Str(missing='default')
+
+class ResponseSchema(Schema):
+    """Schema for response formatting"""
+    data = fields.Raw()
+    status = fields.Str()
+    message = fields.Str()
+
+@api.route('/endpoint', methods=['POST'])
+def endpoint_handler() -> tuple[Dict[str, Any], int]:
+    """
+    Endpoint description in Persian and English
+    
+    Returns:
+        tuple: JSON response and HTTP status code
+    """
+    try:
+        # Input validation
+        schema = RequestSchema()
+        data = schema.load(request.json or {})
+        
+        # Authentication/authorization checks
+        if not is_authorized(data.get('session_id')):
+            logger.warning(f"Unauthorized access attempt: {request.remote_addr}")
+            return jsonify({
+                'error': 'دسترسی غیرمجاز',
+                'status': 'error'
+            }), 401
+        
+        # Business logic
+        result = process_request(data)
+        
+        # Success response
+        logger.info(f"Request processed successfully: {data.get('session_id')}")
+        return jsonify({
+            'data': result,
+            'status': 'success',
+            'message': 'درخواست با موفقیت پردازش شد'
+        }), 200
+        
+    except ValidationError as e:
+        logger.warning(f"Validation error: {e.messages}")
+        return jsonify({
+            'error': 'داده‌های ورودی نامعتبر',
+            'details': e.messages,
+            'status': 'error'
+        }), 400
+        
+    except BadRequest as e:
+        logger.warning(f"Bad request: {str(e)}")
+        return jsonify({
+            'error': str(e),
+            'status': 'error'
+        }), 400
+        
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}", exc_info=True)
+        return jsonify({
+            'error': 'خطای داخلی سرور',
+            'status': 'error'
+        }), 500
+
+def process_request(data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Process the validated request data
+    
+    Args:
+        data: Validated request data
+        
+    Returns:
+        Processed result
+        
+    Raises:
+        APIError: When processing fails
+    """
+    # Implementation with proper error handling
+    pass
+```
+
+## Persian Language Support
+
+### Text Handling
+```javascript
+// RTL Support
+const useRTLSupport = () => {
+  useEffect(() => {
+    document.dir = 'rtl';
+    document.lang = 'fa';
+  }, []);
+};
+
+// Persian Text Validation
+const validatePersianText = (text) => {
+  const persianPattern = /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\w\s\.,!?;:\-()]+$/;
+  return persianPattern.test(text);
+};
+
+// Mixed Language Content
+const handleMixedContent = (text) => {
+  return text.split('').map((char, index) => {
+    const isPersian = /[\u0600-\u06FF]/.test(char);
+    return (
+      <span 
+        key={index} 
+        dir={isPersian ? 'rtl' : 'ltr'}
+        style={{ unicodeBidi: 'plaintext' }}
+      >
+        {char}
+      </span>
+    );
+  });
+};
+```
+
+### CSS for Persian Support
+```css
+/* RTL Layout */
+.rtl-container {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+}
+
+/* Mixed Content */
+.mixed-content {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Persian Typography */
+.persian-text {
+  font-family: 'Vazir', 'Tahoma', sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+
+/* Form Inputs */
+.persian-input {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Vazir', 'Tahoma', sans-serif;
+}
+
+.persian-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+```
+
+## Audio Processing Guidelines
+
+### Recording Implementation
+```javascript
+const useAudioRecording = () => {
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioBlob, setAudioBlob] = useState(null);
+  const [error, setError] = useState(null);
+  const mediaRecorderRef = useRef(null);
+  const streamRef = useRef(null);
+
+  const startRecording = useCallback(async () => {
+    try {
+      setError(null);
+      
+      // Check browser support
+      if (!navigator.mediaDevices?.getUserMedia) {
+        throw new Error('مرورگر شما از ضبط صدا پشتیبانی نمی‌کند');
+      }
+
+      // Request microphone access
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+          sampleRate: 44100
+        }
+      });
+
+      streamRef.current = stream;
+
+      // Setup MediaRecorder
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm;codecs=opus'
+      });
+
+      const audioChunks = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        setAudioBlob(audioBlob);
+        
+        // Cleanup
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      mediaRecorderRef.current = mediaRecorder;
+      mediaRecorder.start();
+      setIsRecording(true);
+
+    } catch (err) {
+      console.error('Recording failed:', err);
+      setError(err.message || 'خطا در شروع ضبط صدا');
+    }
+  }, []);
+
+  const stopRecording = useCallback(() => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+    }
+  }, [isRecording]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
+
+  return {
+    isRecording,
+    audioBlob,
+    error,
+    startRecording,
+    stopRecording
+  };
+};
+```
+
+### Backend Audio Processing
+```python
+import os
+import tempfile
+from werkzeug.utils import secure_filename
+from werkzeug.exceptions import BadRequest
+import openai
+
+ALLOWED_EXTENSIONS = {'wav', 'mp3', 'webm', 'm4a', 'ogg'}
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 25MB (OpenAI limit)
+
+def validate_audio_file(file) -> bool:
+    """
+    Validate uploaded audio file
+    
+    Args:
+        file: Uploaded file object
+        
+    Returns:
+        bool: True if valid
+        
+    Raises:
+        BadRequest: If file is invalid
+    """
+    if not file or not file.filename:
+        raise BadRequest('فایل صوتی ارسال نشده است')
+    
+    # Check file extension
+    filename = secure_filename(file.filename)
+    if not allowed_file(filename):
+        raise BadRequest('فرمت فایل صوتی پشتیبانی نمی‌شود')
+    
+    # Check file size
+    file.seek(0, os.SEEK_END)
+    size = file.tell()
+    file.seek(0)
+    
+    if size > MAX_FILE_SIZE:
+        raise BadRequest('حجم فایل بیش از حد مجاز است')
+    
+    if size == 0:
+        raise BadRequest('فایل صوتی خالی است')
+    
+    return True
+
+def allowed_file(filename: str) -> bool:
+    """Check if file extension is allowed"""
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+async def transcribe_audio(audio_file) -> Dict[str, Any]:
+    """
+    Transcribe audio using OpenAI Whisper
+    
+    Args:
+        audio_file: Audio file to transcribe
+        
+    Returns:
+        Dict containing transcription result
+        
+    Raises:
+        APIError: When transcription fails
+    """
+    try:
+        # Validate file
+        validate_audio_file(audio_file)
+        
+        # Create temporary file
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.webm') as temp_file:
+            audio_file.save(temp_file.name)
+            
+            # Transcribe with OpenAI
+            with open(temp_file.name, 'rb') as audio:
+                response = openai.Audio.transcribe(
+                    model="whisper-1",
+                    file=audio,
+                    language="fa",  # Persian language hint
+                    response_format="verbose_json"
+                )
+            
+            # Cleanup temp file
+            os.unlink(temp_file.name)
+            
+        return {
+            'text': response.text,
+            'language': response.language,
+            'duration': response.duration,
+            'confidence': getattr(response, 'confidence', None)
+        }
+        
+    except openai.error.InvalidRequestError as e:
+        logger.error(f"OpenAI validation error: {str(e)}")
+        raise APIError('فایل صوتی نامعتبر است', 400)
+        
+    except openai.error.RateLimitError:
+        logger.error("OpenAI rate limit exceeded")
+        raise APIError('محدودیت تعداد درخواست', 429)
+        
+    except Exception as e:
+        logger.error(f"Transcription failed: {str(e)}")
+        raise APIError('خطا در تبدیل صوت به متن', 500)
+```
+
+## Security Guidelines
+
+### Input Validation
+```python
+from marshmallow import Schema, fields, validate, ValidationError
+import re
+
+class SecureTextSchema(Schema):
+    """Secure text input validation"""
+    text = fields.Str(
+        required=True,
+        validate=[
+            validate.Length(min=1, max=1000),
+            lambda x: validate_safe_text(x)
+        ]
+    )
+
+def validate_safe_text(text: str) -> bool:
+    """
+    Validate text for security threats
+    
+    Args:
+        text: Input text to validate
+        
+    Returns:
+        bool: True if text is safe
+        
+    Raises:
+        ValidationError: If text contains threats
+    """
+    # Check for XSS patterns
+    xss_patterns = [
+        r'<script.*?</script>',
+        r'javascript:',
+        r'on\w+\s*=',
+        r'data:text/html'
+    ]
+    
+    for pattern in xss_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            raise ValidationError('متن حاوی محتوای مخرب است')
+    
+    # Check for SQL injection patterns
+    sql_patterns = [
+        r'(\bUNION\b|\bSELECT\b|\bINSERT\b|\bDELETE\b|\bUPDATE\b)',
+        r'(\bDROP\b|\bCREATE\b|\bALTER\b)',
+        r'(--|\#|\/\*)'
+    ]
+    
+    for pattern in sql_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            raise ValidationError('متن حاوی الگوی مشکوک است')
+    
+    return True
+```
+
+### Rate Limiting
+```python
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+import redis
+
+# Initialize rate limiter
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,
+    storage_uri=os.getenv('REDIS_URL', 'memory://'),
+    default_limits=["1000 per day", "100 per hour"]
+)
+
+@api.route('/api/speech-to-text', methods=['POST'])
+@limiter.limit("10 per minute")  # Specific limit for heavy operations
+def speech_to_text():
+    """Rate-limited speech to text endpoint"""
+    pass
+
+@api.route('/api/chat', methods=['POST'])
+@limiter.limit("30 per minute")  # Chat rate limiting
+def chat():
+    """Rate-limited chat endpoint"""
+    pass
+```
+
+## Testing Standards
+
+### Frontend Testing
+```javascript
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import VoiceRecorder from './VoiceRecorder';
+
+// Mock server setup
+const server = setupServer(
+  rest.post('/api/speech-to-text', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        text: 'سلام دنیا',
+        status: 'success'
+      })
+    );
+  })
+);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+describe('VoiceRecorder Component', () => {
+  test('should handle recording lifecycle', async () => {
+    render(<VoiceRecorder />);
+    
+    const startButton = screen.getByRole('button', { name: /شروع ضبط/i });
+    const stopButton = screen.getByRole('button', { name: /توقف ضبط/i });
+    
+    // Test recording start
+    fireEvent.click(startButton);
+    expect(screen.getByText(/در حال ضبط/i)).toBeInTheDocument();
+    
+    // Test recording stop
+    fireEvent.click(stopButton);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/سلام دنیا/i)).toBeInTheDocument();
+    });
+  });
+
+  test('should handle microphone permission denial', async () => {
+    // Mock getUserMedia rejection
+    Object.defineProperty(navigator, 'mediaDevices', {
+      writable: true,
+      value: {
+        getUserMedia: jest.fn().mockRejectedValue(new Error('Permission denied'))
+      }
+    });
+
+    render(<VoiceRecorder />);
+    
+    const startButton = screen.getByRole('button', { name: /شروع ضبط/i });
+    fireEvent.click(startButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/دسترسی به میکروفون رد شد/i)).toBeInTheDocument();
+    });
+  });
+
+  test('should be accessible', () => {
+    render(<VoiceRecorder />);
+    
+    // Check ARIA labels
+    expect(screen.getByRole('button', { name: /شروع ضبط/i })).toHaveAttribute('aria-label');
+    
+    // Check RTL support
+    expect(screen.getByTestId('voice-recorder')).toHaveAttribute('dir', 'rtl');
+    
+    // Check keyboard navigation
+    const startButton = screen.getByRole('button', { name: /شروع ضبط/i });
+    startButton.focus();
+    expect(startButton).toHaveFocus();
+  });
+});
+```
+
+### Backend Testing
+```python
+import pytest
+import json
+from unittest.mock import patch, MagicMock
+from io import BytesIO
+from app import create_app
+
+@pytest.fixture
+def client():
+    """Test client fixture"""
+    app = create_app({'TESTING': True, 'WTF_CSRF_ENABLED': False})
+    with app.test_client() as client:
+        yield client
+
+@pytest.fixture
+def mock_audio_file():
+    """Mock audio file fixture"""
+    return (BytesIO(b'fake audio data'), 'test.wav')
+
+class TestSpeechToText:
+    """Test speech to text functionality"""
+    
+    @patch('app.routes.openai.Audio.transcribe')
+    def test_successful_transcription(self, mock_transcribe, client, mock_audio_file):
+        """Test successful audio transcription"""
+        # Setup mock
+        mock_response = MagicMock()
+        mock_response.text = 'سلام دنیا'
+        mock_response.language = 'fa'
+        mock_transcribe.return_value = mock_response
+        
+        # Make request
+        response = client.post('/api/speech-to-text', 
+                             data={'audio': mock_audio_file})
+        
+        # Assertions
+        assert response.status_code == 200
+        data = json.loads(response.data)
+        assert data['status'] == 'success'
+        assert 'سلام دنیا' in data['text']
+        assert data['language'] == 'fa'
+
+    def test_missing_audio_file(self, client):
+        """Test request without audio file"""
+        response = client.post('/api/speech-to-text', data={})
+        
+        assert response.status_code == 400
+        data = json.loads(response.data)
+        assert data['status'] == 'error'
+        assert 'فایل صوتی' in data['error']
+
+    def test_invalid_file_format(self, client):
+        """Test invalid file format"""
+        invalid_file = (BytesIO(b'not audio'), 'test.txt')
+        response = client.post('/api/speech-to-text', 
+                             data={'audio': invalid_file})
+        
+        assert response.status_code == 400
+        data = json.loads(response.data)
+        assert 'فرمت فایل' in data['error']
+
+    @patch('app.routes.openai.Audio.transcribe')
+    def test_openai_rate_limit(self, mock_transcribe, client, mock_audio_file):
+        """Test OpenAI rate limit handling"""
+        from openai.error import RateLimitError
+        mock_transcribe.side_effect = RateLimitError("Rate limit exceeded")
+        
+        response = client.post('/api/speech-to-text', 
+                             data={'audio': mock_audio_file})
+        
+        assert response.status_code == 429
+        data = json.loads(response.data)
+        assert 'محدودیت' in data['error']
+
+class TestSecurity:
+    """Test security measures"""
+    
+    def test_xss_prevention(self, client):
+        """Test XSS attack prevention"""
+        malicious_text = '<script>alert("xss")</script>'
+        response = client.post('/api/chat', 
+                             json={'message': malicious_text})
+        
+        assert response.status_code == 400
+        data = json.loads(response.data)
+        assert 'مخرب' in data['error']
+
+    def test_file_size_limit(self, client):
+        """Test file size limitation"""
+        large_file = (BytesIO(b'x' * (26 * 1024 * 1024)), 'large.wav')  # 26MB
+        response = client.post('/api/speech-to-text', 
+                             data={'audio': large_file})
+        
+        assert response.status_code == 400
+        data = json.loads(response.data)
+        assert 'حجم فایل' in data['error']
+
+    def test_rate_limiting(self, client):
+        """Test API rate limiting"""
+        # Make multiple requests rapidly
+        for _ in range(15):  # Exceed 10 per minute limit
+            client.post('/api/speech-to-text', 
+                       data={'audio': (BytesIO(b'audio'), 'test.wav')})
+        
+        response = client.post('/api/speech-to-text', 
+                             data={'audio': (BytesIO(b'audio'), 'test.wav')})
+        
+        assert response.status_code == 429
+```
+
+## Performance Optimization
+
+### Frontend Optimization
+```javascript
+// Lazy loading components
+const ChatInterface = React.lazy(() => import('./ChatInterface'));
+const VoiceRecorder = React.lazy(() => import('./VoiceRecorder'));
+
+// Memoized components
+const ExpensiveComponent = React.memo(({ data }) => {
+  return <div>{processExpensiveData(data)}</div>;
+});
+
+// Optimized hooks
+const useOptimizedState = (initialValue) => {
+  const [state, setState] = useState(initialValue);
+  
+  const setStateOptimized = useCallback((newState) => {
+    setState(prev => {
+      if (JSON.stringify(prev) === JSON.stringify(newState)) {
+        return prev; // Prevent unnecessary re-renders
+      }
+      return newState;
+    });
+  }, []);
+  
+  return [state, setStateOptimized];
+};
+
+// Debounced API calls
+const useDebouncedApi = (apiCall, delay = 300) => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const timeoutRef = useRef();
+  
+  const debouncedCall = useCallback((...args) => {
+    setLoading(true);
+    
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    
+    timeoutRef.current = setTimeout(async () => {
+      try {
+        const result = await apiCall(...args);
+        setData(result);
+      } catch (error) {
+        console.error('API call failed:', error);
+      } finally {
+        setLoading(false);
+      }
+    }, delay);
+  }, [apiCall, delay]);
+  
+  return { data, loading, call: debouncedCall };
+};
+```
+
+### Backend Optimization
+```python
+from functools import lru_cache
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+# Caching expensive operations
+@lru_cache(maxsize=100)
+def get_cached_response(text_hash: str) -> str:
+    """Cache expensive computations"""
+    pass
+
+# Async processing
+executor = ThreadPoolExecutor(max_workers=4)
+
+async def process_audio_async(audio_file) -> Dict[str, Any]:
+    """Process audio asynchronously"""
+    loop = asyncio.get_event_loop()
+    
+    # Run CPU-intensive task in thread pool
+    result = await loop.run_in_executor(
+        executor, 
+        transcribe_audio_sync, 
+        audio_file
+    )
+    
+    return result
+
+# Database connection pooling
+from sqlalchemy import create_engine
+from sqlalchemy.pool import QueuePool
+
+engine = create_engine(
+    DATABASE_URL,
+    poolclass=QueuePool,
+    pool_size=10,
+    max_overflow=20,
+    pool_pre_ping=True
+)
+```
+
+## Deployment Configuration
+
+### Docker Optimization
+```dockerfile
+# Multi-stage build for frontend
+FROM node:18-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+# Backend optimization
+FROM python:3.11-slim
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy source code
+COPY . .
+
+# Create non-root user
+RUN adduser --disabled-password --gecos '' appuser
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
+EXPOSE 8000
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "app:app"]
+```
+
+### Production Environment
+```yaml
+# docker-compose.prod.yml
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+      - LOG_LEVEL=INFO
+      - WORKERS=4
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+```
+
+این فایل‌ها مجموعه کاملی از استانداردها و بهترین روش‌های توسعه برای پروژه Voice Chat شما ارائه می‌دهند. هر فایل شامل راهنمایی‌های مفصل برای IDE/ابزار مربوطه است.

@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Files API
+  version: 1.0.0
+  description: API برای مدیریت فایل‌ها
+
+servers:
+  - url: /api/files
+    description: Files endpoints
+
+paths:
+  /stored-files/:
+    get:
+      summary: لیست فایل‌های کاربر
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: موفق
+    post:
+      summary: آپلود فایل جدید
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                tags:
+                  type: string
+      responses:
+        '201':
+          description: ایجاد شد
+
+  /stored-files/{id}/:
+    get:
+      summary: دریافت جزئیات فایل
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: موفق
+    delete:
+      summary: حذف فایل (soft delete)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: حذف شد
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+

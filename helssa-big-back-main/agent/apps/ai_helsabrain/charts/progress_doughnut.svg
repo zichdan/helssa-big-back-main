@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <style>
+    .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+    .subtitle { font-family: Arial, sans-serif; font-size: 14px; fill: #7f8c8d; }
+    .percentage { font-family: Arial, sans-serif; font-size: 36px; font-weight: bold; fill: #2c3e50; }
+    .label { font-family: Arial, sans-serif; font-size: 12px; fill: #34495e; }
+    .legend-text { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+  </style>
+  
+  <!-- عنوان -->
+  <text x="200" y="30" class="title" text-anchor="middle">Ai Helsabrain</text>
+  <text x="200" y="50" class="subtitle" text-anchor="middle">وضعیت پیشرفت</text>
+  <path d="M 200.00,80.00 A 120,120 0 1,1 200.00,80.00 L 200.00,140.00 A 60,60 0 1,0 200.00,140.00 Z" fill="#95a5a6" stroke="white" stroke-width="2"/>
+
+  <!-- درصد کلی -->
+  <text x="200" y="210" class="percentage" text-anchor="middle">0%</text>
+  <text x="200" y="230" class="label" text-anchor="middle">پیشرفت کلی</text>
+
+  <!-- راهنما -->
+  <rect x="50" y="330" width="15" height="15" fill="#95a5a6" rx="2"/>
+  <text x="70" y="342" class="legend-text">شروع نشده: 9 (100.0%)</text>
+</svg>

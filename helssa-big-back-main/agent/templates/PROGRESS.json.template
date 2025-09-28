@@ -1,0 +1,192 @@
+{
+  "app": "{{APP_NAME}}",
+  "version": "1.0.0",
+  "status": "در حال توسعه",
+  "created_at": "{{CREATION_DATE}}",
+  "updated_at": "{{CREATION_DATE}}",
+  "progress": {
+    "overall_percentage": 0,
+    "completed_items": 0,
+    "total_items": 31,
+    "categories": {
+      "documentation": {
+        "name": "مستندسازی",
+        "completed": 0,
+        "total": 4,
+        "percentage": 0
+      },
+      "setup": {
+        "name": "راه‌اندازی",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "database": {
+        "name": "پایگاه داده",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "core": {
+        "name": "هسته‌های اصلی",
+        "completed": 0,
+        "total": 4,
+        "percentage": 0
+      },
+      "api": {
+        "name": "رابط‌های برنامه‌نویسی",
+        "completed": 0,
+        "total": 4,
+        "percentage": 0
+      },
+      "security": {
+        "name": "امنیت",
+        "completed": 0,
+        "total": 3,
+        "percentage": 0
+      },
+      "integration": {
+        "name": "یکپارچه‌سازی",
+        "completed": 0,
+        "total": 5,
+        "percentage": 0
+      },
+      "feature": {
+        "name": "ویژگی‌ها",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "observability": {
+        "name": "مشاهده‌پذیری",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "reliability": {
+        "name": "قابلیت اطمینان",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "testing": {
+        "name": "تست",
+        "completed": 0,
+        "total": 3,
+        "percentage": 0
+      },
+      "admin": {
+        "name": "مدیریت",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "performance": {
+        "name": "عملکرد",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      "deployment": {
+        "name": "انتشار",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0
+      }
+    }
+  },
+  "milestones": [
+    {
+      "id": "foundation",
+      "name": "پایه‌گذاری",
+      "description": "ساختار پایه و مدل‌ها",
+      "target_date": "{{MILESTONE_1_DATE}}",
+      "status": "pending",
+      "items": ["plan", "django_app", "models"],
+      "completion_percentage": 0
+    },
+    {
+      "id": "core_development",
+      "name": "توسعه هسته‌ها",
+      "description": "پیاده‌سازی چهار هسته اصلی",
+      "target_date": "{{MILESTONE_2_DATE}}",
+      "status": "pending",
+      "items": ["api_ingress_core", "text_processing_core", "speech_processing_core", "orchestration_core"],
+      "completion_percentage": 0
+    },
+    {
+      "id": "api_implementation",
+      "name": "پیاده‌سازی API",
+      "description": "API endpoints و serializers",
+      "target_date": "{{MILESTONE_3_DATE}}",
+      "status": "pending",
+      "items": ["serializers", "views", "urls", "patient_endpoints", "doctor_endpoints"],
+      "completion_percentage": 0
+    },
+    {
+      "id": "integration",
+      "name": "یکپارچه‌سازی",
+      "description": "ادغام با سیستم‌های موجود",
+      "target_date": "{{MILESTONE_4_DATE}}",
+      "status": "pending",
+      "items": ["unified_auth_integration", "unified_billing_integration", "unified_access_integration"],
+      "completion_percentage": 0
+    },
+    {
+      "id": "security_features",
+      "name": "ویژگی‌های امنیتی",
+      "description": "احراز هویت و دسترسی",
+      "target_date": "{{MILESTONE_5_DATE}}",
+      "status": "pending",
+      "items": ["permissions", "otp_kavenegar", "security_audit"],
+      "completion_percentage": 0
+    },
+    {
+      "id": "testing_documentation",
+      "name": "تست و مستندسازی",
+      "description": "تست‌ها و مستندات",
+      "target_date": "{{MILESTONE_6_DATE}}",
+      "status": "pending",
+      "items": ["unit_tests", "integration_tests", "e2e_tests", "api_documentation", "readme_complete"],
+      "completion_percentage": 0
+    },
+    {
+      "id": "production_ready",
+      "name": "آماده انتشار",
+      "description": "بهینه‌سازی و آماده‌سازی",
+      "target_date": "{{MILESTONE_7_DATE}}",
+      "status": "pending",
+      "items": ["performance_optimization", "deployment_ready", "settings_urls"],
+      "completion_percentage": 0
+    }
+  ],
+  "history": [
+    {
+      "date": "{{CREATION_DATE}}",
+      "action": "project_created",
+      "description": "پروژه ایجاد شد",
+      "progress_before": 0,
+      "progress_after": 0
+    }
+  ],
+  "estimates": {
+    "total_hours": "{{ESTIMATED_HOURS}}",
+    "complexity": "{{COMPLEXITY_LEVEL}}",
+    "risk_level": "{{RISK_LEVEL}}"
+  },
+  "dependencies": {
+    "internal": [
+      "unified_auth",
+      "unified_billing", 
+      "unified_access"
+    ],
+    "external": [
+      "{{EXTERNAL_DEPENDENCIES}}"
+    ]
+  },
+  "team": {
+    "lead_agent": "{{AGENT_NAME}}",
+    "reviewers": ["Mother Agent", "QA Agent"],
+    "estimated_completion": "{{ESTIMATED_COMPLETION}}"
+  }
+}

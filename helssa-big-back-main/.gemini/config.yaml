@@ -1,0 +1,37 @@
+have_fun: true
+code_review:
+  disable: false
+  comment_severity_threshold: HIGH
+  max_review_comments: 200
+  pull_request_opened:
+    help: true
+    summary: false
+    code_review: true
+ignore_patterns:
+- '**/node_modules/**'
+- '**/.next/**'
+- '**/out/**'
+- '**/dist/**'
+- '**/build/**'
+- '**/coverage/**'
+- '**/*.min.js'
+- '**/*.map'
+- '**/.dart_tool/**'
+- '**/build/**'
+- '**/android/**/build/**'
+- '**/.venv/**'
+- '**/venv/**'
+- '**/__pycache__/**'
+- '**/*.pyc'
+- '**/staticfiles/**'
+- '**/media/**'
+- '**/*migrations/**'
+- '**/public/assets/**'
+- '**/static/**'
+- '**/*.svg'
+- '**/*.png'
+- '**/*.jpg'
+- '**/*.jpeg'
+- '**/*.gif'
+- '**/.env*'
+- '**/secrets/**'

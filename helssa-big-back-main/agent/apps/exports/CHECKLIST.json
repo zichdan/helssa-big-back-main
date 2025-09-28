@@ -1,0 +1,14 @@
+{
+  "app": "exports",
+  "version": "1.0.0",
+  "created_at": "2025-08-27T00:00:00",
+  "updated_at": "2025-08-27T00:00:00",
+  "items": [
+    {"id": "plan", "title": "PLAN.md تکمیل شد", "done": true},
+    {"id": "django_app", "title": "Django app ایجاد شد", "done": true},
+    {"id": "api_ingress_core", "title": "هسته‌ی ورودی API پیاده‌سازی شد", "done": true},
+    {"id": "orchestration_core", "title": "هسته‌ی ارکستراسیون پیاده‌سازی شد", "done": true},
+    {"id": "urls", "title": "URL routing پیکربندی شد", "done": true}
+  ],
+  "progress": {"total_items": 5, "completed": 5, "percentage": 100}
+}

@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: Exports API
+  version: 1.0.0
+  description: API documentation for exports
+
+servers:
+  - url: /api/exports
+    description: API endpoint
+
+paths:
+  /main/:
+    post:
+      summary: Main endpoint
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Success
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+

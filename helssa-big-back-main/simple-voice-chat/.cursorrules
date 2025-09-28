@@ -1,0 +1,128 @@
+# Cursor IDE Development Rules
+
+## General Principles
+- Write clean, maintainable, and well-documented code
+- Follow modern best practices for React and Flask development
+- Prioritize code readability and maintainability
+- Use TypeScript for new frontend components when possible
+- Implement proper error handling and logging
+
+## Code Style
+- Use 2 spaces for indentation in JavaScript/TypeScript/React
+- Use 4 spaces for indentation in Python
+- Use meaningful variable and function names
+- Follow camelCase for JavaScript/TypeScript and snake_case for Python
+- Add JSDoc comments for complex functions
+- Use docstrings for Python functions
+
+## React Development
+- Use functional components with hooks
+- Implement proper PropTypes or TypeScript interfaces
+- Use React Query or SWR for data fetching
+- Implement proper loading and error states
+- Use CSS modules or styled-components for styling
+- Follow accessibility best practices (ARIA labels, semantic HTML)
+
+## Flask/Python Development
+- Follow PEP 8 style guidelines
+- Use type hints where appropriate
+- Implement proper exception handling
+- Use blueprints for organizing routes
+- Validate input data with marshmallow or pydantic
+- Write comprehensive tests with pytest
+
+## API Design
+- Follow RESTful conventions
+- Use proper HTTP status codes
+- Implement request/response validation
+- Add rate limiting for public endpoints
+- Document APIs with OpenAPI/Swagger
+- Version APIs appropriately
+
+## Security
+- Validate and sanitize all user inputs
+- Use environment variables for sensitive data
+- Implement proper CORS configuration
+- Use HTTPS in production
+- Add input validation and rate limiting
+- Never commit secrets or API keys
+
+## Testing
+- Write unit tests for all business logic
+- Implement integration tests for APIs
+- Use Jest and React Testing Library for frontend tests
+- Use pytest for backend tests
+- Aim for >80% code coverage
+- Write tests before implementing features (TDD when possible)
+
+## Docker & DevOps
+- Use multi-stage builds for production images
+- Minimize Docker image sizes
+- Use .dockerignore to exclude unnecessary files
+- Implement health checks in containers
+- Use docker-compose for local development
+
+## File Organization
+```
+/frontend
+  /src
+    /components     # Reusable UI components
+    /pages         # Page components
+    /hooks         # Custom hooks
+    /services      # API calls and business logic
+    /utils         # Utility functions
+    /types         # TypeScript type definitions
+    /styles        # Global styles and themes
+
+/backend
+  /app
+    /models        # Database models
+    /routes        # API route handlers
+    /services      # Business logic
+    /utils         # Utility functions
+    /tests         # Test files
+```
+
+## Git Workflow
+- Use conventional commit messages (feat:, fix:, docs:, etc.)
+- Create feature branches for new development
+- Write descriptive commit messages
+- Keep commits atomic and focused
+- Use pull requests for code review
+
+## Performance
+- Optimize bundle sizes in React
+- Use lazy loading for routes and components
+- Implement proper caching strategies
+- Optimize database queries
+- Use compression for API responses
+- Monitor performance metrics
+
+## Accessibility
+- Use semantic HTML elements
+- Add proper ARIA labels and roles
+- Ensure keyboard navigation works
+- Provide alt text for images
+- Maintain color contrast ratios
+- Test with screen readers
+
+## Error Handling
+- Implement global error boundaries in React
+- Use proper error status codes in APIs
+- Log errors with context information
+- Provide user-friendly error messages
+- Implement retry mechanisms for network calls
+
+## Dependencies
+- Keep dependencies up to date
+- Use exact versions in production
+- Audit dependencies for security vulnerabilities
+- Remove unused dependencies regularly
+- Document any custom dependency choices
+
+## Documentation
+- Update README files when adding features
+- Document API endpoints with examples
+- Add inline comments for complex logic
+- Keep documentation in sync with code changes
+- Use JSDoc/docstrings for function documentation

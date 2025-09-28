@@ -1,0 +1,173 @@
+# قوانین Windsurf برای پروژه هلسا
+
+## تنظیمات کلی
+project_name: "Helssa Medical Platform"
+primary_language: "fa-IR"
+code_language: "python"
+framework: "django"
+
+## استانداردهای کدنویسی
+
+### Python/Django
+- پیروی از PEP 8
+- استفاده از type hints
+- حداکثر طول خط: 88 کاراکتر (Black formatter)
+- docstring به فارسی برای توابع و کلاس‌ها
+
+### نام‌گذاری
+- متغیرها و توابع: snake_case (انگلیسی)
+- کلاس‌ها: PascalCase (انگلیسی)
+- ثابت‌ها: UPPER_SNAKE_CASE (انگلیسی)
+- verbose_name در مدل‌ها: فارسی
+
+## معماری پروژه
+
+### ساختار 4 هسته‌ای
+هر اپلیکیشن باید شامل 4 هسته باشد:
+1. API Ingress Core - مدیریت درخواست‌ها
+2. Text Processing Core - پردازش متن
+3. Speech Processing Core - پردازش صوت
+4. Central Orchestration Core - هماهنگی
+
+### مدل‌های یکپارچه
+- استفاده از UnifiedUser برای کاربران
+- ارث‌بری از BaseModel برای همه مدل‌ها
+- استفاده از unified services
+
+## احراز هویت و امنیت
+
+### OTP System
+- استفاده از auth_otp app
+- کاوه‌نگار برای ارسال پیامک
+- Rate limiting: 1/min, 5/hour, 10/day
+
+### JWT Authentication
+- Access token: 5 دقیقه
+- Refresh token: 7 روز
+- Token rotation فعال
+
+### دسترسی‌ها
+- همیشه permission_classes تعریف شود
+- استفاده از IsPatient, IsDoctor permissions
+- بررسی دسترسی پزشک به بیمار با unified_access
+
+## API Guidelines
+
+### Response Format
+```json
+{
+  "success": true,
+  "data": {},
+  "message": "پیام فارسی"
+}
+```
+
+### Error Format
+```json
+{
+  "success": false,
+  "error": "error_code",
+  "message": "توضیح فارسی خطا",
+  "details": {}
+}
+```
+
+### Status Codes
+- 200: موفق
+- 201: ایجاد شد
+- 400: خطای validation
+- 401: عدم احراز هویت
+- 403: عدم دسترسی
+- 404: یافت نشد
+- 429: محدودیت نرخ
+- 500: خطای سرور
+
+## Database Best Practices
+
+### Optimization
+- استفاده از select_related برای ForeignKey
+- استفاده از prefetch_related برای ManyToMany
+- ایجاد index برای فیلدهای پرکاربرد
+
+### Migrations
+- هر migration باید reverse قابل اجرا باشد
+- نام migrations باید توصیفی باشد
+- data migrations جدا از schema migrations
+
+## تست‌نویسی
+
+### Coverage
+- حداقل 80% code coverage
+- تست برای همه endpoint ها
+- تست edge cases
+
+### Mock Services
+- Mock کردن سرویس‌های خارجی (کاوه‌نگار، AI)
+- استفاده از fixtures برای داده‌های تست
+
+## پیام‌ها و متون
+
+### پیام‌های کاربری
+- همه پیام‌ها به فارسی
+- استفاده از زبان رسمی و محترمانه
+- پیام‌های خطا باید راهنما باشند
+
+### لاگ‌ها
+- لاگ‌ها به انگلیسی
+- استفاده از سطوح مناسب (DEBUG, INFO, WARNING, ERROR)
+- شامل context کافی
+
+## Git Workflow
+
+### Branch Names
+- feature/description
+- bugfix/description
+- hotfix/description
+- refactor/description
+
+### Commit Messages
+به فارسی با فرمت:
+```
+<type>: <subject>
+
+<body>
+
+<footer>
+```
+
+Types:
+- feat: ویژگی جدید
+- fix: رفع باگ
+- docs: مستندات
+- style: تغییرات ظاهری
+- refactor: بازنویسی کد
+- test: افزودن تست
+- chore: تغییرات جانبی
+
+## محیط‌های اجرا
+
+### Development
+- DEBUG = True
+- استفاده از SQLite
+- ALLOWED_HOSTS = ['*']
+
+### Staging
+- DEBUG = False
+- PostgreSQL
+- Sentry برای error tracking
+
+### Production
+- DEBUG = False
+- PostgreSQL با replica
+- Redis برای cache
+- Celery برای async tasks
+- HTTPS الزامی
+
+## چک‌لیست قبل از Push
+
+- [ ] کد از linter عبور می‌کند
+- [ ] تست‌ها پاس می‌شوند
+- [ ] migration ها بررسی شده‌اند
+- [ ] مستندات بروز شده
+- [ ] کامیت‌ها atomic هستند
+- [ ] branch از develop بروز است

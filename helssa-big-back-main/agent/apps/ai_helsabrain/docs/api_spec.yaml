@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Ai Helsabrain API
+  version: 1.0.0
+  description: API documentation for ai_helsabrain
+
+servers:
+  - url: /api/ai_helsabrain
+    description: API endpoint
+
+paths:
+  # API paths را اینجا تعریف کنید
+
+components:
+  schemas:
+    # Schema definitions را اینجا تعریف کنید
+  
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

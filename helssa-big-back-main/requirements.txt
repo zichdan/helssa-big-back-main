@@ -1,0 +1,76 @@
+# Django & REST
+Django==5.2.5
+djangorestframework==3.16.1
+djangorestframework-simplejwt==5.5.1
+django-cors-headers==4.7.0
+drf-yasg==1.21.10
+django-storages==1.14.2
+django-caching==1.1.0
+
+# DevOps & Monitoring
+docker==7.1.0
+GitPython==3.1.45
+psutil==6.1.0
+django-ratelimit==4.1.0
+django-encrypted-model-fields==0.6.5
+
+# MySQL & Vector support
+mysqlclient>=2.2,<3.0
+
+# Celery & Redis
+celery==5.4.0
+redis==5.0.8
+billiard==4.2.0
+kombu==5.4.0
+amqp==5.2.0
+vine==5.1.0
+django-redis==6.0.0
+
+
+# Cloud & Storage
+django-minio-storage==0.5.8
+
+# Messaging
+kavenegar==1.1.2
+
+
+# Utils
+python-dotenv==1.0.1
+requests==2.32.4
+urllib3==2.5.0
+idna==3.10
+certifi==2025.8.3
+jdatetime==5.2.0
+pydub==0.25.1
+
+# Formatting & Parsing
+PyYAML==6.0.2
+pytz==2025.2
+sqlparse==0.5.1
+attrs==25.3.0
+packaging==24.1
+typing_extensions==4.14.1
+
+# Dev & Debug
+pytest==8.4.1
+pytest-watch==4.2.0
+watchdog==6.0.0
+
+# PDF & Fonts
+weasyprint==62.3
+pillow==10.4.0
+fonttools==4.59.1
+Brotli==1.1.0
+tinycss2==1.4.0
+cssselect2==0.8.0
+html5lib==1.1
+pyphen==0.17.2
+pydyf==0.11.0
+webencodings==0.5.1
+zopfli
+
+# QR Codes
+qrcode==7.4.2
+
+# OpenAI
+openai==1.102.0

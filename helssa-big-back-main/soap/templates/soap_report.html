@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>گزارش SOAP</title>
+    <style>
+        body { font-family: sans-serif; direction: rtl; }
+        h1, h2 { color: #333; }
+        .section { margin-bottom: 16px; }
+        .label { font-weight: bold; }
+    </style>
+    </head>
+<body>
+    <h1>گزارش SOAP</h1>
+    <div class="section">
+        <div>تاریخ: {{ generated_at }}</div>
+        <div>شماره ملاقات: {{ encounter_id }}</div>
+    </div>
+    <div class="section">
+        <h2>Subjective</h2>
+        <div><span class="label">شکایت اصلی:</span> {{ subjective.chief_complaint }}</div>
+        <div><span class="label">تاریخچه بیماری فعلی:</span> {{ subjective.hpi.narrative }}</div>
+    </div>
+    <div class="section">
+        <h2>Objective</h2>
+        <div><span class="label">معاینه فیزیکی:</span> {{ objective.physical_exam }}</div>
+    </div>
+    <div class="section">
+        <h2>Assessment</h2>
+    </div>
+    <div class="section">
+        <h2>Plan</h2>
+    </div>
+</body>
+</html>

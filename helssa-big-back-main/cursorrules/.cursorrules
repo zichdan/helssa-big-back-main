@@ -1,0 +1,70 @@
+# قوانین Cursor برای پروژه هلسا
+
+## زبان و منطقه
+- زبان اصلی: فارسی (ir-IR)
+- کامنت‌ها و مستندات: فارسی
+- نام متغیرها و توابع: انگلیسی
+- پیام‌های کاربری: فارسی
+
+## استانداردهای کدنویسی
+
+### Python/Django
+- استفاده از PEP 8
+- Type hints برای تمام توابع
+- Docstring فارسی برای توابع و کلاس‌ها
+- استفاده از f-strings برای formatting
+
+### معماری
+- رعایت معماری 4 هسته‌ای (API Ingress, Text Processing, Speech Processing, Orchestration)
+- استفاده از unified models
+- JWT authentication با Simple JWT
+- OTP با کاوه‌نگار
+
+### امنیت
+- همیشه از UnifiedUser استفاده کنید
+- Rate limiting برای تمام API ها
+- Input validation با serializers
+- SQL injection prevention با ORM
+
+### نام‌گذاری
+```python
+# متغیرها: snake_case
+user_profile = UserProfile()
+
+# کلاس‌ها: PascalCase
+class PatientProfile(models.Model):
+    pass
+
+# ثابت‌ها: UPPER_SNAKE_CASE
+MAX_OTP_ATTEMPTS = 3
+```
+
+### کامنت‌گذاری
+```python
+def send_otp(phone_number: str) -> dict:
+    """
+    ارسال کد OTP به شماره موبایل
+    
+    Args:
+        phone_number: شماره موبایل به فرمت 09123456789
+        
+    Returns:
+        dict: حاوی وضعیت ارسال و شناسه OTP
+    """
+    pass
+```
+
+## قوانین Git
+- Commit messages: فارسی
+- Branch names: انگلیسی با kebab-case
+- هر commit باید atomic باشد
+
+## تست‌ها
+- حداقل 80% code coverage
+- تست برای تمام endpoint ها
+- Mock کردن سرویس‌های خارجی
+
+## مستندات
+- README.md فارسی برای هر app
+- Docstring برای تمام توابع public
+- نمونه کد برای API ها

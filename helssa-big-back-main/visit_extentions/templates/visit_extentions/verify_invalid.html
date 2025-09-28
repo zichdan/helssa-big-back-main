@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اعتبار گواهی</title>
+    <style>
+        body { font-family: DejaVu Sans, Vazirmatn, sans-serif; background: #fff7ed; }
+        .card { max-width: 640px; margin: 40px auto; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); border: 1px solid #fed7aa; }
+        .bad { color: #ef4444; }
+        .meta { color: #7f1d1d; font-size: 14px; }
+        .row { margin: 8px 0; }
+    </style>
+    <meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+    <div class="card">
+        <h2 class="bad">گواهی نامعتبر است</h2>
+        <p class="meta">این گواهی توسط پزشک باطل شده است.</p>
+        <div class="row">شناسه گواهی: {{ certificate.id }}</div>
+        <div class="row">ویزیت: {{ certificate.visit_id }}</div>
+        <div class="row">پزشک: {{ certificate.doctor }}</div>
+        <div class="row">بیمار: {{ certificate.patient }}</div>
+    </div>
+</body>
+</html>
+

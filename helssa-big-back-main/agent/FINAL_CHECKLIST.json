@@ -1,0 +1,322 @@
+{
+  "agent_requirements": {
+    "documentation": {
+      "read_core_architecture": {
+        "description": "مطالعه کامل CORE_ARCHITECTURE.md",
+        "required": true,
+        "path": "instructions/CORE_ARCHITECTURE.md"
+      },
+      "read_security_policies": {
+        "description": "مطالعه کامل SECURITY_POLICIES.md",
+        "required": true,
+        "path": "instructions/SECURITY_POLICIES.md"
+      },
+      "read_agent_instructions": {
+        "description": "مطالعه کامل AGENT_INSTRUCTIONS.md",
+        "required": true,
+        "path": "instructions/AGENT_INSTRUCTIONS.md"
+      }
+    },
+    "planning": {
+      "create_plan": {
+        "description": "تکمیل PLAN.md بر اساس template",
+        "required": true,
+        "template": "templates/PLAN.md.template"
+      },
+      "define_api_endpoints": {
+        "description": "تعریف دقیق API endpoints",
+        "required": true
+      },
+      "design_data_models": {
+        "description": "طراحی مدل‌های داده",
+        "required": true
+      }
+    },
+    "implementation": {
+      "four_cores": {
+        "api_ingress": {
+          "description": "پیاده‌سازی هسته API Ingress",
+          "required": true,
+          "pattern": "app_standards/four_cores/api_ingress.py"
+        },
+        "text_processor": {
+          "description": "پیاده‌سازی هسته Text Processing",
+          "required": "if_text_processing"
+        },
+        "speech_processor": {
+          "description": "پیاده‌سازی هسته Speech Processing",
+          "required": "if_audio_processing"
+        },
+        "orchestrator": {
+          "description": "پیاده‌سازی Central Orchestrator",
+          "required": true
+        }
+      },
+      "models": {
+        "use_base_models": {
+          "description": "استفاده از BaseModel برای همه مدل‌ها",
+          "required": true
+        },
+        "no_custom_user": {
+          "description": "عدم ایجاد User model جدید",
+          "required": true,
+          "critical": true
+        }
+      },
+      "views": {
+        "error_handling": {
+          "description": "پیاده‌سازی error handling استاندارد",
+          "required": true
+        },
+        "permissions": {
+          "description": "استفاده از permission classes مناسب",
+          "required": true
+        }
+      },
+      "serializers": {
+        "validation": {
+          "description": "اعتبارسنجی کامل داده‌ها",
+          "required": true
+        }
+      }
+    },
+    "integration": {
+      "unified_auth": {
+        "description": "یکپارچه‌سازی با unified_auth",
+        "required": true,
+        "critical": true
+      },
+      "unified_billing": {
+        "description": "یکپارچه‌سازی با unified_billing",
+        "required": "if_payment_needed"
+      },
+      "unified_ai": {
+        "description": "یکپارچه‌سازی با unified_ai",
+        "required": "if_ai_needed"
+      },
+      "unified_access": {
+        "description": "یکپارچه‌سازی با unified_access",
+        "required": true
+      }
+    },
+    "security": {
+      "otp_implementation": {
+        "description": "پیاده‌سازی OTP با Kavenegar",
+        "required": true
+      },
+      "jwt_authentication": {
+        "description": "استفاده از JWT برای احراز هویت",
+        "required": true
+      },
+      "rate_limiting": {
+        "description": "پیاده‌سازی محدودیت نرخ درخواست",
+        "required": true
+      },
+      "patient_doctor_separation": {
+        "description": "تفکیک دسترسی بیمار و پزشک",
+        "required": true,
+        "critical": true
+      }
+    },
+    "testing": {
+      "unit_tests": {
+        "description": "نوشتن unit tests",
+        "required": true
+      },
+      "integration_tests": {
+        "description": "نوشتن integration tests",
+        "required": true
+      },
+      "test_coverage": {
+        "description": "پوشش تست حداقل 80%",
+        "required": false
+      }
+    },
+    "documentation": {
+      "readme": {
+        "description": "تکمیل README.md",
+        "required": true
+      },
+      "api_spec": {
+        "description": "تولید OpenAPI specification",
+        "required": true
+      },
+      "user_manual": {
+        "description": "نوشتن راهنمای کاربر",
+        "required": false
+      }
+    },
+    "deployment": {
+      "settings_additions": {
+        "description": "ایجاد settings_additions.py",
+        "required": true
+      },
+      "urls_additions": {
+        "description": "ایجاد urls_additions.py",
+        "required": true
+      },
+      "requirements": {
+        "description": "ایجاد requirements_additions.txt",
+        "required": true
+      }
+    }
+  },
+  "quality_criteria": {
+    "code_quality": {
+      "pep8_compliance": {
+        "description": "رعایت استاندارد PEP8",
+        "weight": 10
+      },
+      "meaningful_names": {
+        "description": "نام‌گذاری معنادار متغیرها و توابع",
+        "weight": 15
+      },
+      "comments_docstrings": {
+        "description": "کامنت و docstring مناسب",
+        "weight": 10
+      }
+    },
+    "architecture": {
+      "four_cores_implementation": {
+        "description": "پیاده‌سازی صحیح معماری چهار هسته‌ای",
+        "weight": 25,
+        "critical": true
+      },
+      "separation_of_concerns": {
+        "description": "تفکیک مسئولیت‌ها",
+        "weight": 15
+      }
+    },
+    "security": {
+      "authentication": {
+        "description": "احراز هویت امن",
+        "weight": 20,
+        "critical": true
+      },
+      "authorization": {
+        "description": "کنترل دسترسی مناسب",
+        "weight": 20,
+        "critical": true
+      },
+      "data_validation": {
+        "description": "اعتبارسنجی کامل داده‌ها",
+        "weight": 15
+      }
+    },
+    "performance": {
+      "caching": {
+        "description": "استفاده از کش در موارد مناسب",
+        "weight": 10
+      },
+      "query_optimization": {
+        "description": "بهینه‌سازی کوئری‌ها",
+        "weight": 10
+      }
+    }
+  },
+  "forbidden_actions": {
+    "create_user_model": {
+      "description": "ایجاد مدل User جدید",
+      "severity": "critical"
+    },
+    "raw_sql": {
+      "description": "استفاده از Raw SQL",
+      "severity": "high"
+    },
+    "hardcoded_values": {
+      "description": "مقادیر hard-coded در کد",
+      "severity": "medium"
+    },
+    "ignore_security": {
+      "description": "نادیده گرفتن سیاست‌های امنیتی",
+      "severity": "critical"
+    },
+    "change_architecture": {
+      "description": "تغییر معماری چهار هسته‌ای",
+      "severity": "critical"
+    }
+  },
+  "deliverables": {
+    "code": {
+      "app_code": {
+        "path": "apps/{app_name}/app_code/",
+        "description": "کد کامل اپلیکیشن"
+      },
+      "tests": {
+        "path": "apps/{app_name}/app_code/tests/",
+        "description": "تست‌های نوشته شده"
+      }
+    },
+    "documentation": {
+      "readme": {
+        "path": "apps/{app_name}/README.md",
+        "description": "مستندات اپلیکیشن"
+      },
+      "api_spec": {
+        "path": "apps/{app_name}/docs/api_spec.yaml",
+        "description": "مشخصات API"
+      }
+    },
+    "deployment": {
+      "settings": {
+        "path": "apps/{app_name}/deployment/settings_additions.py",
+        "description": "تنظیمات Django"
+      },
+      "urls": {
+        "path": "apps/{app_name}/deployment/urls_additions.py",
+        "description": "URL patterns"
+      },
+      "requirements": {
+        "path": "apps/{app_name}/deployment/requirements_additions.txt",
+        "description": "وابستگی‌های Python"
+      }
+    },
+    "reports": {
+      "plan": {
+        "path": "apps/{app_name}/PLAN.md",
+        "description": "برنامه اجرایی"
+      },
+      "checklist": {
+        "path": "apps/{app_name}/CHECKLIST.json",
+        "description": "چک‌لیست تکمیل شده"
+      },
+      "progress": {
+        "path": "apps/{app_name}/PROGRESS.json",
+        "description": "گزارش پیشرفت"
+      },
+      "log": {
+        "path": "apps/{app_name}/LOG.md",
+        "description": "لاگ تصمیمات"
+      }
+    }
+  },
+  "validation_rules": {
+    "must_exist": [
+      "apps/{app_name}/app_code/__init__.py",
+      "apps/{app_name}/app_code/apps.py",
+      "apps/{app_name}/app_code/models.py",
+      "apps/{app_name}/app_code/views.py",
+      "apps/{app_name}/app_code/serializers.py",
+      "apps/{app_name}/app_code/urls.py",
+      "apps/{app_name}/app_code/cores/api_ingress.py",
+      "apps/{app_name}/app_code/cores/orchestrator.py",
+      "apps/{app_name}/README.md",
+      "apps/{app_name}/PLAN.md",
+      "apps/{app_name}/CHECKLIST.json"
+    ],
+    "must_not_exist": [
+      "apps/{app_name}/app_code/user.py",
+      "apps/{app_name}/app_code/custom_user.py"
+    ],
+    "must_import": {
+      "models.py": [
+        "from django.contrib.auth import get_user_model",
+        "from app_standards.models.base_models import BaseModel"
+      ],
+      "views.py": [
+        "from app_standards.four_cores import APIIngressCore",
+        "from rest_framework import status"
+      ]
+    }
+  }
+}
